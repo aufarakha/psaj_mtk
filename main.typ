@@ -341,6 +341,8 @@ Hari / Tanggal #h(0.5em) : #h(0.5em) #underline[................................
 
 #gbr("Entity Relationship Diagram", kotak("[ Sisipkan ERD / rancangan basis data ]"))
 
+#gbr("Logo Telkom", image("assets/telkom-logo.png", width: 5cm))
+
 #subbab("E", "Desain Antarmuka (UI/UX)")
 
 #catatan[
