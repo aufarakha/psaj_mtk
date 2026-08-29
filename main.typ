@@ -109,7 +109,8 @@ Hari / Tanggal #h(0.5em) : #h(0.5em) #underline[................................
 
 #v(1.5em)
 
-#let ttd-box(label) = {
+// original ttd-box
+/*#let ttd-box(label) = {
   rect(width: 100%, height: 5.5cm, stroke: 0.6pt)[
     #align(top + left)[
       #pad(6pt)[#text(weight: "bold")[#label]]
@@ -120,6 +121,40 @@ Hari / Tanggal #h(0.5em) : #h(0.5em) #underline[................................
       #pad(bottom: 8pt)[
         (#box(width: 7cm)[#repeat[.]])
       ]
+    ]
+  ]
+}*/
+
+// modified ttd-box
+
+#let ttd-box(label, nama: "", gambar: none) = {
+  rect(width: 100%, height: 5.5cm, stroke: 0.6pt)[
+    // Mengatur font khusus untuk di dalam kotak ini
+    #set text(font: ("Times New Roman", "TeX Gyre Termes"), size: 12pt)
+    #set align(center)
+
+    // 1. Label Jabatan (Rata tengah atas)
+    #pad(top: 10pt)[#label]
+
+    // Spacer fleksibel agar elemen tidak bertabrakan
+    #v(1fr)
+
+    // 2. Slot Tanda Tangan
+    #if gambar != none {
+      gambar
+    }
+
+    #v(1fr)
+
+    // 3. Slot Nama / Titik-titik (Rata tengah bawah)
+    #pad(bottom: 10pt)[
+      ( #if nama == "" {
+        // Jika nama kosong, tampilkan titik-titik
+        box(width: 6cm)[#repeat[.]]
+      } else {
+        // Jika nama diisi, teks rata tengah tanpa titik-titik
+        box(width: 6cm, align(center)[#nama])
+      } )
     ]
   ]
 }
