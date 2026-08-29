@@ -157,3 +157,16 @@
 #let nomor(..items) = {
   enum(numbering: "1.", ..items)
 }
+
+// Daftar Pustaka
+// ─── Format Daftar Pustaka (Hanging Indent) ────────
+#let pustaka(teks) = {
+  // Pengaturan font 12pt Times New Roman
+  set text(font: ("Times New Roman", "TeX Gyre Termes"), size: 12pt)
+  
+  // Mengatur baris kedua dan seterusnya menjorok ke dalam sebesar 1.27cm
+  set par(justify: true, leading: 0.9em, hanging-indent: 1.27cm)
+  
+  block(width: 100%, teks)
+  v(0.5em) // Jarak antar daftar pustaka
+}

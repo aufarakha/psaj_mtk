@@ -586,11 +586,8 @@ Hari / Tanggal #h(0.5em) : #h(0.5em) #underline[................................
 // ============================================================
 #pagebreak(weak: true)
 
-#align(center)[
-  #v(0.4em)
-  #text(weight: "bold", size: 14pt)[DAFTAR PUSTAKA]
-  #v(0.8em)
-]
+// Gunakan heading tanpa nomor agar terdeteksi oleh daftar isi
+#heading(level: 1, numbering: none)[DAFTAR PUSTAKA]
 
 #catatan[
   Tuliskan sumber yang Anda kutip, disusun menurut abjad, dengan
@@ -598,18 +595,17 @@ Hari / Tanggal #h(0.5em) : #h(0.5em) #underline[................................
   _Nama belakang, Inisial. (Tahun). Judul. Penerbit atau alamat situs._
 ]
 
-#isian(baris: 3)
+#pustaka([Pressman, R. S. (2015). _Software Engineering: A Practitioner's Approach_ (8th ed.). McGraw-Hill Education.])
+#pustaka([Sukamto, R. A., & Shalahuddin, M. (2018). _Rekayasa Perangkat Lunak Terstruktur dan Berorientasi Objek_. Informatika Bandung.])
+
 
 // ============================================================
 //  LAMPIRAN
 // ============================================================
 #pagebreak(weak: true)
 
-#align(center)[
-  #v(0.4em)
-  #text(weight: "bold", size: 14pt)[LAMPIRAN]
-  #v(0.8em)
-]
+// Gunakan heading tanpa nomor agar terdeteksi oleh daftar isi
+#heading(level: 1, numbering: none)[LAMPIRAN]
 
 #catatan[Sertakan berkas pendukung berikut.]
 
