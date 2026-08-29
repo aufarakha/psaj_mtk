@@ -42,7 +42,7 @@
 
   #v(1cm)
 
-  #text(weight: "bold")[PROGRAM KEAHLIAN PENGEMBANGAN PERANGKAT LUNAK DAN GIM] \
+  #text(weight: "bold", tracking: -0.5pt)[PROGRAM KEAHLIAN PENGEMBANGAN PERANGKAT LUNAK DAN GIM] \
   #v(0.3em)
   #text(weight: "bold")[SMK TELKOM PURWOKERTO] \
   #v(0.3em)
@@ -267,6 +267,7 @@ Hari / Tanggal #h(0.5em) : #h(0.5em) #underline[................................
 ]
 
 #nomor(
+  [#isian(baris: 1, teks: [test])],
   [#box(width: 13.5cm)[#repeat[.]]],
   [#box(width: 13.5cm)[#repeat[.]]],
   [#box(width: 13.5cm)[#repeat[.]]],
