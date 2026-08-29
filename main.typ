@@ -130,7 +130,7 @@ Hari / Tanggal #h(0.5em) : #h(0.5em) #underline[................................
 #let ttd-box(label, nama: "", gambar: none) = {
   rect(width: 100%, height: 5.5cm, stroke: 0.6pt)[
     // Mengatur font khusus untuk di dalam kotak ini
-    #set text(font: ("Times New Roman", "TeX Gyre Termes"), size: 12pt)
+    #set text(font: ("Times New Roman"), size: 12pt)
     #set align(center)
 
     // 1. Label Jabatan (Rata tengah atas)
@@ -163,7 +163,7 @@ Hari / Tanggal #h(0.5em) : #h(0.5em) #underline[................................
   columns: (1fr, 1fr),
   column-gutter: 0.5cm,
   row-gutter: 0.5cm,
-  ttd-box[Guru Pembimbing],
+  ttd-box([Guru Pembimbing], gambar: image("assets/telkom-logo.png", width: 3.5cm), nama: [Reza Auditore]),
   ttd-box[Koordinator Program Keahlian PPLG],
   ttd-box[Perwakilan Klien / Mitra],
   ttd-box[Kepala SMK Telkom Purwokerto],
