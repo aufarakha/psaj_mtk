@@ -103,6 +103,60 @@ experiments/
 
 **Narasi Laporan (Bab 4.6):** *"Dari 4 iterasi backtesting, rata-rata kesalahan model adalah 0.6851%. Model semakin akurat seiring bertambahnya data training (error terkecil di skenario terakhir 2018–2024)."*
 
+#### 🔍 Analisis Kritis MAE (Bahan Diskusi Bab 4.6 & Saran Bab 5.2)
+
+MAE 0.6851% perlu dibaca dalam konteks **skala data TPT**, bukan nilai absolut.
+
+| Metrik Konteks | Nilai | Interpretasi |
+|---|---|---|
+| Range TPT nasional (2018–2025) | **1.65 pp** | Skala data sangat sempit |
+| MAE / Range | **41.4%** | Besar relatif terhadap range |
+| MAE / Mean TPT *(≈ MAPE)* | **13.9%** | Lumayan besar |
+| Error terburuk (2023) | **1.08 pp = 23.4%** dari aktual | Terparah — efek data sedikit |
+| Error terbaik (2025) | **0.17 pp = 3.8%** dari aktual | Sangat bagus |
+
+> [!WARNING]
+> **Jujur: MAE ini sedang–kurang bagus secara teknis.** Bukan karena modelnya salah, tapi karena dua keterbatasan inheren: (1) **data training sangat sedikit** — hanya 7 titik waktu, (2) **outlier COVID 2020** — TPT melonjak ke 6.03% lalu turun drastis, menarik garis regresi ke atas.
+
+> [!TIP]
+> **Tren error justru membaik:** 23.4% (2023) → 15.3% (2024) → **3.8% (2025)**. Ini bukti model makin stabil seiring bertambahnya data, yang mendukung kepercayaan pada prediksi 2026.
+
+**Script jawaban saat presentasi (jika ditanya soal akurasi):**
+> *"Error model kami memang masih cukup besar di iterasi awal karena data training yang terbatas dan guncangan COVID-19 di 2020. Namun error membaik drastis ke 3.8% di iterasi terakhir. Ini kami jadikan dasar saran di Bab 5.2."*
+
+**Bahan Bab 5.2 Saran (siap salin ke Overleaf):**
+> *"Untuk meningkatkan akurasi peramalan, disarankan: (1) menggunakan data bulanan/kuartalan agar jumlah titik data lebih banyak, (2) mengeluarkan periode COVID-19 (2020–2021) dari data training atau menggunakan metode yang robust terhadap outlier, dan (3) menambahkan variabel bebas seperti pertumbuhan PDRB untuk Regresi Linear Berganda."*
+
+#### 📐 Kenapa R² Tidak Dipakai di Backtesting?
+
+R² sebenarnya sudah dihitung — ada dua versi dengan nasib yang berbeda:
+
+| Metrik | Nilai | Dipakai di | Status |
+|---|---|---|---|
+| **R² cross-section** (38 provinsi 2025) | **0.3949** | **Bab 4.5** | ✅ Valid — pakai ini |
+| **R² backtesting** (4 titik test) | **−10.59** | ~~jangan dipakai~~ | ❌ Misleading |
+
+**Kenapa R² backtesting bisa negatif?**
+
+```
+R² = 1 − (SS_residual / SS_total)
+   = 1 − (2.318 / 0.200)
+   = 1 − 11.59 = −10.59
+```
+
+SS_residual > SS_total artinya prediksi model meleset **lebih jauh** dari sekadar menebak rata-rata aktual. Ini bukan bug — ini konsekuensi wajar dari 4 titik test yang terlalu sedikit: satu prediksi meleset besar (2023: error 1.08 pp) langsung menghancurkan seluruh R².
+
+> [!NOTE]
+> **R² negatif = model kalah dari "tebakan naif" (pakai rata-rata).** Bukan berarti modelnya salah secara konseptual, tapi memang tidak cukup data untuk R² backtesting bermakna. Untuk kasus seperti ini, MAE lebih jujur dan lebih robust.
+
+**Panduan penggunaan metrik di laporan:**
+
+| Bab | Metrik yang digunakan | Alasan |
+|---|---|---|
+| Bab 4.4 | Pearson r = 0.6284 | Justifikasi *pemilihan* metode |
+| Bab 4.5 | R² = 0.3949, MAE cross-section = 0.7706% | Evaluasi *kecocokan* model pada data 38 provinsi |
+| Bab 4.6 | MAE backtesting = 0.6851% | Evaluasi *performa prediksi* temporal — R² tidak valid di sini |
+
 ### 🔮 Forecasting 2026 (Bab 4.7)
 
 | | Nilai |

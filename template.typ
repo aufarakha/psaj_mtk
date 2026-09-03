@@ -20,7 +20,7 @@
 // ─── FUNGSI UTAMA: #show: psaj-doc ──────────────────────────
 #let psaj-doc(body) = {
   set document(title: "Laporan PSAJ", author: "SMK Telkom Purwokerto")
-  set text(font: ("TeX Gyre Termes", "Liberation Serif"), size: 12pt, lang: "id")
+  set text(font: ("Times New Roman", "TeX Gyre Termes", "Liberation Serif"), size: 12pt, lang: "id")
   set par(justify: true, leading: 0.9em)
   set page(
     paper: "a4",
@@ -48,38 +48,24 @@
 }
 
 // ─── Catatan pembantu (teks abu miring) ─────────────────────
-// Hapus semua #catatan[...] sebelum laporan dikumpulkan
 #let catatan(body) = {
   set text(fill: abu, style: "italic", size: 11pt)
   block(inset: (left: 1em), body)
   v(0.4em)
 }
 
-// ─── Garis titik-titik untuk isian ──────────────────────────
-/*#let isian(baris: 1) = {
-  for _ in range(baris) {
-    block(width: 100%)[#repeat[.]]
-    v(0.1em)
-  }
-  v(0.3em)
-}*/
-
 // ─── Garis titik-titik / Teks Menjorok Fleksibel ────────
 #let isian(teks: [], pakai-titik: false, menjorok: 0cm, baris: 1) = {
-  // Pengaturan font khusus area ini
-  set text(font: ("Times New Roman", "TeX Gyre Termes"), size: 12pt)
+  set text(font: ("Times New Roman", "TeX Gyre Termes", "Liberation Serif"), size: 12pt)
   set par(leading: 0.9em)
   
-  // Bungkus semua dengan 'pad' untuk mengatur jarak menjorok
   pad(left: menjorok)[
     #if pakai-titik {
-      // Jika pakai-titik: true -> Cetak teks + titik-titik sisa baris
       block(width: 100%)[
         #teks #box(width: 1fr)[#repeat[.]]
       ]
       v(0.1em)
       
-      // Tambahan baris titik-titik kosong jika baris > 1
       if baris > 1 {
         for _ in range(baris - 1) {
           block(width: 100%)[#repeat[.]]
@@ -87,7 +73,6 @@
         }
       }
     } else {
-      // Jika pakai-titik: false -> Hanya cetak teks biasa (otomatis turun bawah)
       teks
     }
   ]
@@ -101,10 +86,7 @@
   _bab.update(nomor-bab)
   _tabel.update(0)
   _gambar.update(0)
-  heading(level: 1, numbering: none)[
-    BAB #angka-romawi \
-    #judul-bab
-  ]
+  heading(level: 1, numbering: none)[BAB #angka-romawi #judul-bab]
 }
 
 // ─── Sub-bab berlabel huruf ──────────────────────────────────
@@ -114,7 +96,6 @@
 }
 
 // ─── Judul tabel otomatis (di atas tabel) ───────────────────
-// Pattern: step() di luar context{}, get() di dalam context{}
 #let judul-tabel(judul) = {
   _tabel.step()
   align(center, context strong[Tabel #str(_bab.get().first()).#str(_tabel.get().first()) #judul])
@@ -122,7 +103,6 @@
 }
 
 // ─── Tabel standar dengan judul otomatis ─────────────────────
-// isi: blok #table(...) typst biasa
 #let tbl(judul, isi) = {
   judul-tabel(judul)
   align(center, isi)
@@ -143,8 +123,6 @@
 }
 
 // ─── Gambar dengan judul otomatis (di bawah) ────────────────
-// Contoh: #gbr("Use Case Diagram", kotak("[ diagram ]"))
-//    atau: #gbr("Diagram", image("diagram.png"))
 #let gbr(judul, isi) = {
   align(center, isi)
   v(0.3em)
@@ -158,15 +136,10 @@
   enum(numbering: "1.", ..items)
 }
 
-// Daftar Pustaka
 // ─── Format Daftar Pustaka (Hanging Indent) ────────
 #let pustaka(teks) = {
-  // Pengaturan font 12pt Times New Roman
-  set text(font: ("Times New Roman", "TeX Gyre Termes"), size: 12pt)
-  
-  // Mengatur baris kedua dan seterusnya menjorok ke dalam sebesar 1.27cm
+  set text(font: ("Times New Roman", "TeX Gyre Termes", "Liberation Serif"), size: 12pt)
   set par(justify: true, leading: 0.9em, hanging-indent: 1.27cm)
-  
   block(width: 100%, teks)
-  v(0.5em) // Jarak antar daftar pustaka
+  v(0.5em)
 }
