@@ -20,9 +20,7 @@
   #v(1.2em)
 
   #text(weight: "bold", size: 14pt)[
-    ANALISIS STATISTIKA DESKRIPTIF DAN PEMODELAN REGRESI LINEAR: \
-    PENGARUH PERSENTASE PENDUDUK BERPENDIDIKAN SMA KE ATAS \
-    TERHADAP TINGKAT PENGANGGURAN TERBUKA DI INDONESIA
+    ANALISIS STATISTIKA DESKRIPTIF DAN PEMODELAN REGRESI LINEAR PENGARUH PERSENTASE PENDUDUK BERPENDIDIKAN SMA KE ATAS TERHADAP TINGKAT PENGANGGURAN TERBUKA DI INDONESIA
   ]
 
   #v(1.2em)
@@ -456,7 +454,7 @@ $ "Mo" = T_b + (d_1 / (d_1 + d_2)) p = 31.5 + (10 / (10 + 2)) times 8 = 31.5 + (
 
 #tbl("Ringkasan Komponen Perhitungan Korelasi Pearson (38 Provinsi, 2025)",
   table(
-    columns: (1fr, 1.2fr, 1.2fr, 1.5fr, 1.2fr, 1.5fr),
+    columns: (3fr, 1.4fr, 1.4fr, 1.8fr, 1.6fr, 1.6fr),
     stroke: 0.6pt,
     inset: 7pt,
     align: (center, center, center, center, center, center),
